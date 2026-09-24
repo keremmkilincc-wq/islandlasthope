@@ -36,7 +36,7 @@ public class WeaponController : MonoBehaviour
             // Statiklerde basit scale punch, Pistol'de Animator trigger
             if (current == pistol)
             {
-                var anim = current.GetComponent<Animator>();
+                var anim = current.GetComponent<UnityEngine.Animator>();
                 if (anim) anim.SetTrigger("Fire"); // Pistol.fbx içindeki Fire clip
             }
             else
