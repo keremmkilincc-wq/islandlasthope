@@ -35,7 +35,7 @@ public class AutoSetup
             GameObjectUtility.SetStaticEditorFlags(swamp, StaticEditorFlags.NavigationStatic);
         }
 
-        // Player
+        // Player - SEN (Adventurer)
         var playerGO = new GameObject("Player");
         playerGO.tag = "Player";
         var cc = playerGO.AddComponent<CharacterController>();
@@ -44,6 +44,18 @@ public class AutoSetup
         var hope = playerGO.AddComponent<HopeSystem>();
         var weapon = playerGO.AddComponent<WeaponController>();
         playerGO.transform.position = new Vector3(0, 2, 0);
+        // Adventurer - SENİN karakterin (animasyonlu, BobEffect YOK)
+        var advPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Models/Characters/Adventurer/Adventurer.fbx");
+        if (advPrefab != null)
+        {
+            var adv = (GameObject)PrefabUtility.InstantiatePrefab(advPrefab);
+            adv.name = "Adventurer_Player";
+            adv.transform.SetParent(playerGO.transform);
+            adv.transform.localPosition = new Vector3(0, -0.9f, 0);
+            adv.transform.localRotation = Quaternion.identity;
+            adv.transform.localScale = Vector3.one * 0.7f;
+            // NO BobEffect - zaten animasyonlu
+        }
 
         var camRoot = new GameObject("CameraRoot");
         camRoot.transform.SetParent(playerGO.transform);
