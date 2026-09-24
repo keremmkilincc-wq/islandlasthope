@@ -10,6 +10,7 @@ public class PlayerController70 : MonoBehaviour
     public float jumpForce = 5f;
     public float mouseSensitivity = 1.4f;
     public Transform cameraRoot;
+    public Light flashlight;
     public float stamina = 100f;
 
     private CharacterController cc;
