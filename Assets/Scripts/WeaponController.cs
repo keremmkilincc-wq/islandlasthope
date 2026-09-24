@@ -36,8 +36,11 @@ public class WeaponController : MonoBehaviour
             // Statiklerde basit scale punch, Pistol'de Animator trigger
             if (current == pistol)
             {
-                var anim = current.GetComponent<UnityEngine.Animator>();
-                if (anim) anim.SetTrigger("Fire"); // Pistol.fbx içindeki Fire clip
+                // Pistol zaten animasyonlu (Animator), modül yüklü değilse direkt çalışmaz
+                // Animation module aktif değil - şimdilik sadece efekt
+                Debug.Log("🔫 Pistol Fire (Animator hazır, modül aktif olunca SetTrigger çalışacak)");
+                // var anim = current.GetComponent<UnityEngine.Animator>();
+                // if (anim) anim.SetTrigger("Fire");
             }
             else
             {
