@@ -22,13 +22,18 @@ public class NPCMara : MonoBehaviour
         {
             Talk();
         }
-        // gündüz hafif dolaşma
-        if (!agent.hasPath || agent.remainingDistance < 1f)
+        // NavMesh yoksa hareketsiz dur (bembeyaz hata vermesin)
+        if (agent == null || !agent.isOnNavMesh) return;
+        try
         {
-            Vector3 rnd = transform.position + Random.insideUnitSphere * 8f;
-            if (NavMesh.SamplePosition(rnd, out var hit, 10f, NavMesh.AllAreas))
-                agent.SetDestination(hit.position);
+            if (!agent.hasPath || agent.remainingDistance < 1f)
+            {
+                Vector3 rnd = transform.position + Random.insideUnitSphere * 8f;
+                if (NavMesh.SamplePosition(rnd, out var hit, 10f, NavMesh.AllAreas))
+                    agent.SetDestination(hit.position);
+            }
         }
+        catch { /* NavMesh bake edilene kadar bekle */ }
     }
 
     void Talk()
