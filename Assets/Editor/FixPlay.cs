@@ -20,12 +20,17 @@ public class FixPlay
         RenderSettings.fog = true;
         RenderSettings.fogColor = new Color(0.7f, 0.85f, 0.9f);
         RenderSettings.fogDensity = 0.004f;
-        // 2. Player'ı ağaçların dışına güvenli noktaya al
+        // 2. Player'ı adaya yakın güvenli noktaya al
         var player = GameObject.Find("Player");
-        if (player != null) player.transform.position = new Vector3(0, 3, -12);
-        // 3. Mara'yı Player yakınına koy (E ile konuşma testi)
+        if (player != null) player.transform.position = new Vector3(0, 3, -6);
+        // 3. Mara'yı Player yakınına koy (E ile konuşma testi) + NavMesh bake edilene kadar agent kapalı
         var mara = GameObject.Find("Mara");
         if (mara != null && player != null) mara.transform.position = player.transform.position + new Vector3(2, -2, 3);
+        if (mara != null)
+        {
+            var agent = mara.GetComponent<UnityEngine.AI.NavMeshAgent>();
+            if (agent != null) agent.enabled = false; // NavMesh bake edilince Island menüsünden açılacak
+        }
         // 4. Güneş ışığını yumuşat (aşırı beyaz patlamasın)
         var sun = GameObject.Find("Directional Light");
         if (sun != null)
