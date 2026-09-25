@@ -6,8 +6,7 @@ public class FixPlay
     [MenuItem("Island/Fix - Play Görünümü Düzelt")]
     public static void Fix()
     {
-        var scene = EditorSceneManager.GetActiveScene();
-        if (!scene.IsValid()) scene = EditorSceneManager.OpenScene("Assets/Scenes/Main.unity");
+        var scene = EditorSceneManager.OpenScene("Assets/Scenes/Main.unity", OpenSceneMode.Single);
         // 1. Kamera arka planını gökyüzü mavisi yap (bembeyaz olmasın)
         var cam = Camera.main;
         if (cam != null)
