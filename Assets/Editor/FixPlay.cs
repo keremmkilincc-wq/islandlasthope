@@ -8,7 +8,8 @@ public class FixPlay
     {
         var scene = EditorSceneManager.OpenScene("Assets/Scenes/Main.unity", OpenSceneMode.Single);
         // 1. Kamera arka planını gökyüzü mavisi yap (bembeyaz olmasın)
-        var cam = Camera.main;
+        var camObj = GameObject.Find("Player/CameraRoot/Main Camera");
+        var cam = camObj != null ? camObj.GetComponent<Camera>() : Camera.main;
         if (cam != null)
         {
             cam.clearFlags = CameraClearFlags.SolidColor;
